@@ -1,0 +1,10 @@
+{
+	"header": "Pages",
+	"items": [
+		{
+			"name": "Dashboard",
+			"data-feather": "sliders",
+			"href": "/index.html"
+		}
+	]
+}
