@@ -180,57 +180,62 @@
 						</h1>
 						<div class="row">
 							<div class="col">
-								<textarea> </textarea>
-								<script>
-									tinymce.init({
-										selector: "textarea",
-										plugins:
-											"ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
-										toolbar:
-											"undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-										tinycomments_mode: "embedded",
-										tinycomments_author: "Author name",
-										mergetags_list: [
-											{ value: "First.Name", title: "First Name" },
-											{ value: "Email", title: "Email" },
-										],
-										ai_request: (request, respondWith) =>
-											respondWith.string(() =>
-												Promise.reject("See docs to implement AI Assistant")
-											),
-										file_picker_types: "image",
-										/* and here's our custom image picker*/
-										file_picker_callback: (cb, value, meta) => {
-											const input = document.createElement("input");
-											input.setAttribute("type", "file");
-											input.setAttribute("accept", "image/*");
-
-											input.addEventListener("change", (e) => {
-												const file = e.target.files[0];
-
-												const reader = new FileReader();
-												reader.addEventListener("load", () => {
-													/*
-          Note: Now we need to register the blob in TinyMCEs image blob
-          registry. In the next release this part hopefully won't be
-          necessary, as we are looking to handle it internally.
-        */
-													const id = "blobid" + new Date().getTime();
-													const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-													const base64 = reader.result.split(",")[1];
-													const blobInfo = blobCache.create(id, file, base64);
-													blobCache.add(blobInfo);
-
-													/* call the callback and populate the Title field with the file name */
-													cb(blobInfo.blobUri(), { title: file.name });
-												});
-												reader.readAsDataURL(file);
-											});
-
-											input.click();
-										},
-									});
-								</script>
+								<div class="card">
+									<div class="card-body">
+										<form>
+											<div class="mb-3">
+												<label for="promotionTitle" class="form-label"
+													><strong>Title</strong></label
+												>
+												<input
+													type="text"
+													class="form-control rounded-0"
+													id="promotionTitle"
+													placeholder="Title.." />
+											</div>
+											<div class="mb-3">
+												<label for="content" class="form-label"><strong>Content</strong></label>
+												<textarea> </textarea>
+											</div>
+											<div class="mb-3">
+												<label for="promotionTitle" class="form-label"
+													><strong>Call to Action Button Link</strong></label
+												>
+												<input
+													type="text"
+													class="form-control rounded-0"
+													id="promotionTitle"
+													placeholder="Insert url here.." />
+											</div>
+											<div class="mb-3">
+												<button
+													type="submit"
+													class="btn btn-primary rounded-0 align-items-center gap-2">
+													<i class="align-middle" data-feather="save"></i>
+													Save
+												</button>
+												<button
+													id="saveButton"
+													type="button"
+													class="btn btn-info rounded-0 align-items-center gap-2">
+													<i class="align-middle" data-feather="file-text"></i>
+													Save As Draft
+												</button>
+												<button
+													id="previewButton"
+													type="button"
+													class="btn btn-secondary rounded-0">
+													<i class="align-middle" data-feather="eye"></i>
+													Preview
+												</button>
+												<a href="/promotions/" class="btn btn-danger rounded-0">
+													<i class="align-middle" data-feather="x-circle"></i>
+													<span>Cancel</span>
+												</a>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -238,6 +243,8 @@
 			</div>
 		</div>
 		<script src="../js/app.js"></script>
+		<script src="../js/tinymce.js"></script>
+		<script src="../js/controller/route.js"></script>
 		<!-- Fontawesome CDN -->
 		<script src="https://kit.fontawesome.com/996b4fade0.js" crossorigin="anonymous"></script>
 	</body>
