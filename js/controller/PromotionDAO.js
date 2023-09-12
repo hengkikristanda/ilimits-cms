@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:3000";
+const apiUrl = "http://localhost:3000/api/data";
 
 document.getElementById("saveButton").addEventListener("click", () => {
 	const content = tinymce.activeEditor.getContent();

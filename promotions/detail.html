@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link rel="shortcut icon" href="../img/icons/exchange-money-svgrepo-com.svg" />
+		<link rel="shortcut icon" href="../img/icons/logo.svg" />
 		<title>iLimits - Content Management System</title>
 		<link href="../css/app.css" rel="stylesheet" />
 		<link
@@ -175,9 +175,9 @@
 				</nav>
 				<main class="content">
 					<div class="container-fluid p-0">
-						<h1 class="h3 mb-3">
-							<strong>Promotions</strong>
-						</h1>
+						<div id="pageTitle" class="d-flex d-flex align-items-center gap-3">
+							<h2 class="fw-bold">Promotions</h2>
+						</div>
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -191,6 +191,7 @@
 													type="text"
 													class="form-control rounded-0"
 													id="promotionTitle"
+													required
 													placeholder="Title.." />
 											</div>
 											<div class="mb-3">
@@ -199,13 +200,23 @@
 											</div>
 											<div class="mb-3">
 												<label for="promotionTitle" class="form-label"
+													><strong>Button Label</strong></label
+												>
+												<input
+													type="text"
+													class="form-control rounded-0"
+													id="buttonLabel"
+													placeholder="Insert Call To Action Button Label Here..." />
+											</div>
+											<div class="mb-3">
+												<label for="promotionTitle" class="form-label"
 													><strong>Call to Action Button Link</strong></label
 												>
 												<input
 													type="text"
 													class="form-control rounded-0"
-													id="promotionTitle"
-													placeholder="Insert url here.." />
+													id="callToActionLink"
+													placeholder="Insert URL Here..." />
 											</div>
 											<div class="mb-3">
 												<button
@@ -244,7 +255,7 @@
 		</div>
 		<script src="../js/app.js"></script>
 		<script src="../js/tinymce.js"></script>
-		<script src="../js/controller/route.js"></script>
+		<script src="../js/controller/Promotion/PromotionEditService.js"></script>
 		<!-- Fontawesome CDN -->
 		<script src="https://kit.fontawesome.com/996b4fade0.js" crossorigin="anonymous"></script>
 	</body>
